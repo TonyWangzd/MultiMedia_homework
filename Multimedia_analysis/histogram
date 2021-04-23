@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('IMG_marshall.jpeg',0)
+img_info = img.shape
+height = img_info[0]
+width = img_info[1]
+
+count = np.zeros(256,np.float)
+
+for i in range(0, height):
+    for j in range(0, width):
+        pixel = img[i,j]
+        index = int(pixel)
+        count[index] = count[index]+1
+
+for i in range(0, 255):
+    count[i] = count[i]/(height*width)
+
+x = np.linspace(0, 255, 256)
